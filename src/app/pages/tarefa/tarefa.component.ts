@@ -38,7 +38,9 @@ export class TarefaComponent implements OnInit{
         duration: 3000,
       });
     }
-    this.router.navigate(['/editar-tarefa', e.id]);
+    else{
+      this.router.navigate(['/editar-tarefa', e.id]);
+    }
   }
 
   concluir(e: any){
@@ -48,10 +50,11 @@ export class TarefaComponent implements OnInit{
         duration: 3000,
       });
     }
-
-    this.tarefaService.concludeTask(e).subscribe(tarefa => {
-      this.loadTasks();
-    });
+    else{
+      this.tarefaService.concludeTask(e).subscribe(tarefa => {
+        this.loadTasks();
+      });
+    }
   }
 
   excluir(e: any){

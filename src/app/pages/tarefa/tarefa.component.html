@@ -1,0 +1,46 @@
+<mat-toolbar color="primary" class="toolbar-centrado">
+  <span class="titulo-centrado">Gerenciador de Tarefas</span>
+</mat-toolbar>
+
+
+<div class="container">
+  <div class="header-container">
+    <h1 class="titulo">Lista de Tarefas</h1>
+    <button mat-raised-button color="primary" routerLink="/adicionar-tarefa" class="add-task-button">
+      Adicionar Tarefa
+    </button>
+  </div>
+
+  <div class="header-row">
+    <p class="header-item">Título</p>
+    <p class="header-item">Descrição</p>
+    <p class="header-item">Data de Vencimento</p>
+    <p class="header-item">Status</p>
+    <p class="header-item">Ações</p>
+  </div>
+
+
+  <mat-card *ngFor="let item of tarefa" class="custom-card">
+
+    <mat-card-content class="content-row">
+      <p class="titulo-centrado">{{ item.titulo }}</p>
+      <p class="campo">{{ item.descricao }}</p>
+      <p class="campo">{{ item.dataVencimento | date:'dd/MM/yyyy' }}</p>
+      <p class="campo">{{ item.status == 0 ? 'Pendente' : item.status == 1 ? 'Em Andamento' : 'Concluída'}}</p>
+
+      <div class="action-buttons">
+        <button mat-icon-button (click)="editar(item)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="excluir(item)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="concluir(item)">
+          <mat-icon>check_circle</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+
+  </mat-card>
+  
+</div>

@@ -1,0 +1,35 @@
+<mat-toolbar color="primary" class="toolbar-centrado">
+    <span class="titulo-centrado">Adicionar Nova Tarefa</span>
+  </mat-toolbar>
+  
+  <div class="container">
+    <form [formGroup]="tarefaForm" (ngSubmit)="onSubmit()" class="form-container">
+      <mat-form-field class="full-width">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo" placeholder="Título da tarefa" required>
+      </mat-form-field>
+  
+      <mat-form-field class="full-width">
+        <mat-label>Descrição</mat-label>
+        <input matInput formControlName="descricao" placeholder="Descrição da tarefa">
+      </mat-form-field>
+  
+      <mat-form-field class="full-width">
+        <mat-label>Data de Vencimento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dataVencimento" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  
+      <mat-form-field class="full-width">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" required>
+          <mat-option [value] = "0">Pendente</mat-option>
+          <mat-option [value] = "1">Em Andamento</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="!tarefaForm.valid" class="save-button">Salvar Tarefa</button>
+      <button mat-raised-button color="warn" routerLink="" class="back-button">Voltar</button>
+    </form>
+  </div>
